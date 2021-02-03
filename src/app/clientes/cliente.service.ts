@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Cliente } from './cliente';
 import { Observable, throwError} from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 
@@ -18,8 +18,9 @@ export class ClienteService {
     return this.http.get<Cliente[]>(this.urlEndpoint);
   }
 
-  create(cliente: Cliente): Observable<any> {
-    return this.http.post<any>(this.urlEndpoint, cliente, { headers: this.httpHeaders}).pipe(
+  create(cliente: Cliente): Observable<Cliente> {
+    return this.http.post(this.urlEndpoint, cliente, { headers: this.httpHeaders}).pipe(
+      map((response: any) => response.cliente as Cliente),
       catchError(e => {
         console.log(e.error.mensaje);
         Swal.fire(e.error.mensaje, e.error.error, 'error');
