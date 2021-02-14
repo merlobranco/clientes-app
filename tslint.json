@@ -153,6 +153,7 @@
     "ordered-imports": false,
     "trailing-comma": false,
     "arrow-parens": [true, "ban-single-arg-parens"],
-    "no-string-literal": false
+    "no-string-literal": false,
+    "prefer-const": false
   }
 }
