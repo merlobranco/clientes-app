@@ -12,7 +12,7 @@ export class FormComponent implements OnInit {
 
   titulo = 'Crear Cliente';
   cliente: Cliente = new Cliente();
-  private errores: string[];
+  errores: string[];
 
   constructor(
     private clienteService: ClienteService,
